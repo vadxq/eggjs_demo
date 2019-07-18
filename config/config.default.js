@@ -32,7 +32,7 @@ module.exports = appInfo => {
   // mongoose
   config.mongoose = {
     client: {
-      url,
+      url: url.url,
       options: {
         autoReconnect: true,
         reconnectTries: Number.MAX_VALUE,
