@@ -12,6 +12,15 @@ module.exports = appInfo => {
    **/
   const config = exports = {};
 
+  config.security = {
+    xframe: {
+      enable: false,
+    },
+    csrf: {
+      enable: false,
+    },
+  };
+
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1563352857642_1749';
 
@@ -22,6 +31,11 @@ module.exports = appInfo => {
   config.mongoose = {
     client: {
       url: 'mongodb://127.0.0.1:27017/eggdemo',
+      options: {
+        autoReconnect: true,
+        reconnectTries: Number.MAX_VALUE,
+        bufferMaxEntries: 0,
+      },
     },
   };
 

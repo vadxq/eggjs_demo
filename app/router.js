@@ -6,5 +6,8 @@
 module.exports = app => {
   const { router, controller } = app;
   router.get('/list', controller.list.list);
-  router.get('/list/:id', controller.list.listOne);
+  router.get('/one/:id', controller.list.getOne);
+  router.post('/one', controller.list.addOne);
+  router.delete('/one/:id', controller.list.delOne);
+  router.put('/one', controller.list.editOne);
 };
