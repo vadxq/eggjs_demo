@@ -4,6 +4,7 @@
  * @param {Egg.Application} app - egg application
  */
 module.exports = app => {
+  app.router.prefix('/api');
   const { router, controller } = app;
   router.get('/list', controller.list.list);
   router.get('/one/:id', controller.list.getOne);
