@@ -5,6 +5,8 @@
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
+const url = require('./port');
+
 module.exports = appInfo => {
   /**
    * built-in config
@@ -30,7 +32,7 @@ module.exports = appInfo => {
   // mongoose
   config.mongoose = {
     client: {
-      url: 'mongodb://127.0.0.1:27017/eggdemo',
+      url,
       options: {
         autoReconnect: true,
         reconnectTries: Number.MAX_VALUE,
