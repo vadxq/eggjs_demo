@@ -16,10 +16,9 @@ class ListService extends Service {
         updateAt: 1,
         content: 1,
       })
-        .skip(+query.page * +query.limit)
+        .skip((+query.page - 1) * +query.limit)
         .limit(7)
         .sort({ _id: -1 });
-      console.log(result);
       let data;
       if (result) {
         data = {
