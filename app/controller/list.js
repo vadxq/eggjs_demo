@@ -8,7 +8,8 @@ class ListController extends Controller {
    * get list Controller
    */
   async list() {
-    const result = await this.service.list.list();
+    const query = this.ctx.query;
+    const result = await this.service.list.list(query);
     if (result.status) {
       this.success(result.data);
     } else {

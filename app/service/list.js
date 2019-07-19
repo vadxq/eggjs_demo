@@ -5,28 +5,35 @@ const Service = require('egg').Service;
 class ListService extends Service {
   /**
    * get list service
+   * @param {Object} query -
    */
-  async list() {
-    const result = await this.ctx.model.List.find({ del: false }, {
-      title: 1,
-      id: 1,
-      publishedAt: 1,
-      updateAt: 1,
-      content: 1,
-    });
-    let data;
-    if (result) {
-      data = {
-        status: 1,
-        data: result,
-      };
-    } else {
-      data = {
-        status: 0,
-        data: '获取列表失败',
-      };
+  async list(query) {
+    if (query.page && query.limit) {
+      const result = await this.ctx.model.List.find({ del: false }, {
+        title: 1,
+        id: 1,
+        publishedAt: 1,
+        updateAt: 1,
+        content: 1,
+      })
+        .skip(+query.page * +query.limit)
+        .limit(7)
+        .sort({ _id: -1 });
+      console.log(result);
+      let data;
+      if (result) {
+        data = {
+          status: 1,
+          data: result,
+        };
+      } else {
+        data = {
+          status: 0,
+          data: '获取列表失败',
+        };
+      }
+      return data;
     }
-    return data;
   }
 
   /**
