@@ -17,7 +17,7 @@ class ListService extends Service {
         content: 1,
       })
         .skip((+query.page - 1) * +query.limit)
-        .limit(7)
+        .limit(+query.limit)
         .sort({ _id: -1 });
       let data;
       if (result) {
